@@ -12,24 +12,28 @@ function App(): JSX.Element {
   const [todo, setTodo] = useState<string>("");
   const [todosArr, setTodosArr] = useState<ITodo[]>([]);
 
+  // save todo state when form button clicked
   const handleSubmitButton = (e: formElement): void => {
     e.preventDefault();
     addTodo(todo);
     setTodo("");
   };
 
+  // add todo to our todos array
   const addTodo = (text: string): void => {
     const newTodo: ITodo[] = [...todosArr, { text, complete: false }];
 
     setTodosArr(newTodo);
   };
 
+  // put line-trough when click on complete button
   const completeTodo = (index: number): void => {
     const newTodos: ITodo[] = [...todosArr];
     newTodos[index].complete = !newTodos[index].complete;
     setTodosArr(newTodos);
   };
 
+  // delete todo when click on remove button
   const removeTodo = (text: string): void => {
     const newTodos: ITodo[] = [...todosArr].filter(
       (todo) => todo.text !== text
@@ -50,6 +54,7 @@ function App(): JSX.Element {
         <button type="submit">ADD TODO</button>
       </form>
       <section>
+        {*/ render todos */}
         {todosArr &&
           todosArr.map((todo: ITodo, index: number) => (
             <Fragment key={index}>
